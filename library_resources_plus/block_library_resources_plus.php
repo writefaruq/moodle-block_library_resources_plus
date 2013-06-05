@@ -15,14 +15,18 @@
 // along with Moodle.  If not, see <http://www.gnu.org/licenses/>.
 
 /**
- * Newblock block caps.
+ * Version details
  *
- * @package    block_newblock
- * @copyright  Daniel Neis <danielneis@gmail.com>
+ * @package    block_library_resources_plus
+ * @copyright  2013 M O Faruque Sarker <ritefaruq@gmail.com>
  * @license    http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 
+
 defined('MOODLE_INTERNAL') || die();
+
+// URLs for reading list
+define('LIBRARY_RESOURCES_PLUS_MODULE_URL_BASE', 'http://readinglists.ucl.ac.uk/modules/');
 
 class block_library_resources_plus extends block_base {
 
@@ -37,6 +41,7 @@ class block_library_resources_plus extends block_base {
             return $this->content;
         }
 
+        
         if (empty($this->instance)) {
             $this->content = '';
             return $this->content;
@@ -46,7 +51,8 @@ class block_library_resources_plus extends block_base {
         $this->content->items = array();
         $this->content->icons = array();
         $this->content->footer = '';
-
+        
+        
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
 
@@ -58,14 +64,16 @@ class block_library_resources_plus extends block_base {
         if (empty($currentcontext)) {
             return $this->content;
         }
+    
         if ($this->page->course->id == SITEID) {
             $this->context->text .= "site context";
         }
 
+        
         if (! empty($this->config->text)) {
             $this->content->text .= $this->config->text;
         }
-
+        
         return $this->content;
     }
 

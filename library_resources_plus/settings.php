@@ -28,7 +28,8 @@ $settings->add(new admin_setting_heading('libraryresourcesplus',
                                          get_string('headerconfig', 'block_library_resources_plus'),
                                          get_string('descconfig', 'block_library_resources_plus')));
 
-$settings->add(new admin_setting_configcheckbox('newblock/foo',
+$settings->add(new admin_setting_configcheckbox('libraryresourcesplus/foo',
                                                 get_string('labelfoo', 'block_library_resources_plus'),
                                                 get_string('descfoo', 'block_library_resources_plus'),
                                                 '0'));
+                                            

@@ -31,3 +31,4 @@ $string['headerconfig'] = 'Config section header';
 $string['descfoo'] = 'Config description';
 $string['labelfoo'] = 'Config label';
 $string['blockstring'] = 'Block string';
+$string['modulereadinglist']=  'Module reading list';
