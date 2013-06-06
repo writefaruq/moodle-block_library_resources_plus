@@ -26,7 +26,8 @@
 defined('MOODLE_INTERNAL') || die();
 
 // URLs for reading list
-define('LIBRARY_RESOURCES_PLUS_MODULE_URL_BASE', 'http://readinglists.ucl.ac.uk/modules/');
+define('LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES', 'http://readinglists.ucl.ac.uk/modules/');
+define('LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES', 'http://readinglists.ucl.ac.uk/programmes/');
 
 class block_library_resources_plus extends block_base {
 
@@ -56,14 +57,19 @@ class block_library_resources_plus extends block_base {
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
 
+        
+        /*
         if (! empty($this->config->text)) {
             $this->content->text = $this->config->text;
         }
 
         $this->content = '';
+        
+        
         if (empty($currentcontext)) {
             return $this->content;
         }
+        
     
         if ($this->page->course->id == SITEID) {
             $this->context->text .= "site context";
@@ -73,6 +79,13 @@ class block_library_resources_plus extends block_base {
         if (! empty($this->config->text)) {
             $this->content->text .= $this->config->text;
         }
+        */
+        
+        
+        $link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
+        $link .= $this->config->progreadlist;
+        
+        $this->content->text = '<a href="' . $link .' "> Programme reading list </a> <br> anothher link';
         
         return $this->content;
     }
