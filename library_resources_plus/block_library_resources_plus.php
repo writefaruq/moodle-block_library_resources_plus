@@ -36,7 +36,7 @@ class block_library_resources_plus extends block_base {
     }
 
     function get_content() {
-        global $CFG, $OUTPUT;
+        global $CFG, $OUTPUT, $COURSE;
 
         if ($this->content !== null) {
             return $this->content;
@@ -56,6 +56,7 @@ class block_library_resources_plus extends block_base {
         
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
+        $courseid = urlencode(strtolower(substr($COURSE->idnumber, 0, 8)));
 
         
         /*
@@ -81,11 +82,11 @@ class block_library_resources_plus extends block_base {
         }
         */
         
-        
+        $prog_id = $this->config->progreadlist;
         $link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
-        $link .= $this->config->progreadlist;
+        $link .= $prog_id;
         
-        $this->content->text = '<a href="' . $link .' "> Programme reading list </a> <br> anothher link';
+        $this->content->text = '<a href="' . $link .' "> Programme Reading Lists for '. $prog_id .' </a> <br> anothher link';
         
         return $this->content;
     }

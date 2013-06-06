@@ -32,4 +32,4 @@ $string['descfoo'] = 'Config description';
 $string['labelfoo'] = 'Config label';
 $string['blockstring'] = 'Block string';
 $string['modulereadinglist']=  'Module reading list';
-$string['labelprogreadlist'] = 'Enter the programme reading list separated by comma';
+$string['labelprogreadlist'] = 'Enter the programme reading lists separated by comma';
