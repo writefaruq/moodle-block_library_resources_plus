@@ -101,25 +101,31 @@ class block_library_resources_plus extends block_base {
 			}
 		}
 		
+		// Add Reading lists
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
 			switch ($i) {
 				case 1:
 					$code = $this->config->readinglistcode1;
+					$display = $this->config->readinglistcheckbox1;
 					break;
 				case 2:
 					$code = $this->config->readinglistcode2;
+					$display = $this->config->readinglistcheckbox2;
 					break;
 				case 3:
 					$code = $this->config->readinglistcode3;
+					$display = $this->config->readinglistcheckbox3;
 					break;
 				case 4:
 					$code = $this->config->readinglistcode4;
+					$display = $this->config->readinglistcheckbox4;
 					break;
 				case 5:
 					$code = $this->config->readinglistcode5;
+					$display = $this->config->readinglistcheckbox5;
 					break;
 			}
-			if ($code) {
+			if ($code && $display) {
 				$link = LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES;
 				$link .= $code;  
 				$this->content->text .= '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
