@@ -33,6 +33,11 @@ $string['labelfoo'] = 'Config label';
 $string['blockstring'] = 'Block string';
 $string['modulereadinglist']=  'Module reading list';
 $string['labelprogreadlist'] = 'Enter the programme reading lists separated by comma';
+
+
+$string['commonsettings'] = 'Common Settings';
 $string['displayuclexplore'] = 'Display UCL Explore';
 $string['displaysubjectlib'] = 'Display Subject Librarians';
 $string['displaywiseinfo'] = 'Display WISE Information Skills';
+$string['readinglist'] = 'Reading List';
+$string['pastexampaper'] = 'Past Exam Paper';

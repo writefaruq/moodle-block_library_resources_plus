@@ -97,11 +97,11 @@ class block_library_resources_plus extends block_base {
 			if ($item[0] == 1) {
 				$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';	
 			}
-			
-			
 		}
 		
-     
+		
+     	//$this->content->text .= 'Reading List 1';
+		//$this->content->text .=  $this->config->readinglistdropdown;
 		
 		
 		//$display_ucl_explore = $this->config->displaysubjectlib;
