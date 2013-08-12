@@ -18,18 +18,22 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 		}
         
 		// Section : Reading Lists
-		for ($i=1; $i<= LIST_LENGTH; $i++) {
-			$mform->addElement('header', 'readinglist', 'Reading List '.$i);
-			$types = array(
+		$types = array(
 				'module' => 'Module',
 				'program' => 'Programme',
-			);
-			
-			$select = $mform->addElement('select', 'config_readinglistdropdown1', 'Type', $types);
+		);
+		for ($i=1; $i<= LIST_LENGTH; $i++) {
+			$mform->addElement('header', 'readinglist'.$i , 'Reading List '.$i);	
+			$select = $mform->addElement('select', 'config_readinglistdropdown'.$i, 'Type', $types);
 			$select->setSelected('module');
-			//$mform->addElement('text', 'config_progreadlist', get_string('labelprogreadlist', 'block_library_resources_plus'));
-			//$mform->addElement('advcheckbox', 'config_readinglistdropdown',  'Display', null, array('group' => 2), array(0, 1));
-			//$mform->setDefault('config_readinglistdropdown', 1);	
+			$mform->addElement('text', 'config_readinglistcode'.$i, 'Code');
+			$mform->addElement('advcheckbox', 'config_readinglistcheckbox'.$i,  'Display', null, array('group' => 2), array(0, 1));
+			if ($i==1){
+				$mform->setDefault('config_readinglistcode'.$i, 'CODE123');	
+				$mform->setDefault('config_readinglistcheckbox'.$i, 1);	
+				
+			}
+				
 		}
 		
         
