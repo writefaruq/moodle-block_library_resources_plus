@@ -28,6 +28,7 @@ defined('MOODLE_INTERNAL') || die();
 // URLs for reading list
 define('LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE', 'http://ucl-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?menuitem=0&fromTop=true&fromPreferences=false&fromEshelf=false&vid=UCL_VU1');
 define('LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS', 'http://www.ucl.ac.uk/Library/whoaz.shtml');
+define('LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS', 'https://moodle.ucl.ac.uk/course/category.php?id=70');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES', 'http://readinglists.ucl.ac.uk/modules/');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES', 'http://readinglists.ucl.ac.uk/programmes/');
 
@@ -85,18 +86,32 @@ class block_library_resources_plus extends block_base {
         */
         
         //Add the static links
-        $display_ucl_explore = $this->config->displayuclexplore;
-		$link = LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE;
-		$desc = 'UCL Explore';
-		$this->content->text = '<a href="' . $link .' "> '. $desc .' </a> <br>';
+        $static_items = array(
+			array ($this->config->displayuclexplore , 'UCL Explore', LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE),
+			array($this->config->displaysubjectlib, 'UCL Subject Librarians', LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS),
+			array($this->config->displaywiseinfo, 'WISE Information Skills', LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS),
+		);
+		
+		foreach ( $static_items as $item) {
+			//echo 'Item: '. $item[1] . 'enabled = ' . $item[0];
+			if ($item[0] == 1) {
+				$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';	
+			}
+			
+			
+		}
+		
+     
 		
 		
-		$display_ucl_explore = $this->config->displaysubjectlib;
-		$link = LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS;
-		$desc = 'UCL Subject Librarians';
-		$this->content->text .= '<a href="' . $link .' "> '. $desc .' </a> <br>';
+		//$display_ucl_explore = $this->config->displaysubjectlib;
+		//$link = LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS;
+		//$desc = 
+		//$this->content->text .= '<a href="' . $link .' "> '. $desc .' </a> <br>';
         
         
+		
+		// Add programme list
         $prog_id = $this->config->progreadlist;
         $link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
         $link .= $prog_id;

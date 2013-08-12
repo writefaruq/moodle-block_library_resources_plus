@@ -35,3 +35,4 @@ $string['modulereadinglist']=  'Module reading list';
 $string['labelprogreadlist'] = 'Enter the programme reading lists separated by comma';
 $string['displayuclexplore'] = 'Display UCL Explore';
 $string['displaysubjectlib'] = 'Display Subject Librarians';
+$string['displaywiseinfo'] = 'Display WISE Information Skills';
