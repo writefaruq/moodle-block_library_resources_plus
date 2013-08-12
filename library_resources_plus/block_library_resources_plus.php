@@ -63,31 +63,7 @@ class block_library_resources_plus extends block_base {
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
         $courseid = urlencode(strtolower(substr($COURSE->idnumber, 0, 8)));
-
         
-        /*
-        if (! empty($this->config->text)) {
-            $this->content->text = $this->config->text;
-        }
-
-        $this->content = '';
-        
-        
-        if (empty($currentcontext)) {
-            return $this->content;
-        }
-        
-    
-        if ($this->page->course->id == SITEID) {
-            $this->context->text .= "site context";
-        }
-
-        
-        if (! empty($this->config->text)) {
-            $this->content->text .= $this->config->text;
-        }
-        */
-		
 		// Add Reading lists
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
 			switch ($i) {

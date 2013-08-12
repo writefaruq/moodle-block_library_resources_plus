@@ -5,7 +5,8 @@ define('LIST_LENGTH', 5);
 class block_library_resources_plus_edit_form extends block_edit_form {
 
     protected function specific_definition($mform) {
-
+		 global $COURSE;
+		$courseid = urlencode(substr($COURSE->idnumber, 0, 8));
         // Section : Common  settings
         $mform->addElement('header', 'commonsettings', get_string('commonsettings', 'block_library_resources_plus'));
 
@@ -30,7 +31,7 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 			$mform->addElement('text', 'config_readinglistcode'.$i, 'Code');
 			$mform->addElement('advcheckbox', 'config_readinglistcheckbox'.$i,  'Display', null, array('group' => 2), array(0, 1));
 			if ($i==1){
-				$mform->setDefault('config_readinglistcode'.$i, 'CODE123');	
+				$mform->setDefault('config_readinglistcode'.$i, $courseid);	
 				$mform->setDefault('config_readinglistcheckbox'.$i, 1);		
 			}				
 		}
@@ -41,14 +42,9 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 			$mform->addElement('text', 'config_exampapercode'.$i, 'Code');
 			$mform->addElement('advcheckbox', 'config_exampapercheckbox'.$i,  'Display', null, array('group' => 3), array(0, 1));
 			if ($i==1){
-				$mform->setDefault('config_exampapercode'.$i, 'EXAM23');	
+				$mform->setDefault('config_exampapercode'.$i, $courseid);	
 				$mform->setDefault('config_exampapercheckbox'.$i, 1);		
 			}				
-		}	
-		
-		
-		
-        
-     
+		}	      
     }
 }
