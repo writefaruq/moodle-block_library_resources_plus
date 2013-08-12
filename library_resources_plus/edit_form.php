@@ -34,9 +34,18 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 				$mform->setDefault('config_readinglistcheckbox'.$i, 1);		
 			}				
 		}
-        // Entry for Program reading list codes
-        //$mform->addElement('text', 'config_progreadlist', get_string('labelprogreadlist', 'block_library_resources_plus'));
-        //$mform->setType('config_progreadlist', PARAM_TEXT);
+	
+		// Section: Past exam papers
+		for ($i=1; $i<= LIST_LENGTH; $i++) {
+			$mform->addElement('header', 'exampaper'.$i , 'Past Exam Paper '.$i);
+			$mform->addElement('text', 'config_exampapercode'.$i, 'Code');
+			$mform->addElement('advcheckbox', 'config_exampapercheckbox'.$i,  'Display', null, array('group' => 3), array(0, 1));
+			if ($i==1){
+				$mform->setDefault('config_exampapercode'.$i, 'EXAM23');	
+				$mform->setDefault('config_exampapercheckbox'.$i, 1);		
+			}				
+		}	
+		
 		
 		
         

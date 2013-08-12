@@ -31,6 +31,7 @@ define('LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS', 'http://www.ucl.ac.uk/Li
 define('LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS', 'https://moodle.ucl.ac.uk/course/category.php?id=70');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES', 'http://readinglists.ucl.ac.uk/modules/');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES', 'http://readinglists.ucl.ac.uk/programmes/');
+define('LIBRARY_RESOURCES_PLUS_URL_BASE_EXAM_PAPER', 'http://digitool-b.lib.ucl.ac.uk:8881/R?func=search-advanced-go&LOCAL_BASE=1152&find_code1=WRD&request1=');
 
 define('LIST_LENGTH', 5);
 
@@ -86,20 +87,6 @@ class block_library_resources_plus extends block_base {
             $this->content->text .= $this->config->text;
         }
         */
-        
-        //Add the static links
-        $static_items = array(
-			array ($this->config->displayuclexplore , 'UCL Explore', LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE),
-			array($this->config->displaysubjectlib, 'UCL Subject Librarians', LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS),
-			array($this->config->displaywiseinfo, 'WISE Information Skills', LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS),
-		);
-		
-		foreach ( $static_items as $item) {
-			//echo 'Item: '. $item[1] . 'enabled = ' . $item[0];
-			if ($item[0] == 1) {
-				$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';	
-			}
-		}
 		
 		// Add Reading lists
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
@@ -143,7 +130,50 @@ class block_library_resources_plus extends block_base {
 		}
 		
 		// Past Exam Papers
+		for ($i=1; $i<= LIST_LENGTH; $i++) {
+			switch ($i) {
+				case 1:					
+					$code = $this->config->exampapercode1;
+					$display = $this->config->exampapercheckbox1;
+					break;
+				case 2:
+					$code = $this->config->exampapercode2;
+					$display = $this->config->exampapercheckbox2;
+					break;
+				case 3:
+					$code = $this->config->exampapercode3;
+					$display = $this->config->exampapercheckbox3;
+					break;
+				case 4:
+					$code = $this->config->exampapercode4;
+					$display = $this->config->exampapercheckbox4;
+					break;
+				case 5:
+					$code = $this->config->exampapercode5;
+					$display = $this->config->exampapercheckbox5;
+					break;
+			}
+			if ($code && $display) {
+				$link = LIBRARY_RESOURCES_PLUS_URL_BASE_EXAM_PAPER;
+				$link .= $code;  
+				$this->content->text .= '<a href="' . $link .' "> Past UCL Exam Papers for '. $code .' </a> <br>';	
+			}
+				
+		}
 		
+		 //Add the static links
+        $static_items = array(
+			array ($this->config->displayuclexplore , 'UCL Explore', LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE),
+			array($this->config->displaysubjectlib, 'UCL Subject Librarians', LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS),
+			array($this->config->displaywiseinfo, 'WISE Information Skills', LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS),
+		);
+		
+		foreach ( $static_items as $item) {
+			//echo 'Item: '. $item[1] . 'enabled = ' . $item[0];
+			if ($item[0] == 1) {
+				$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';	
+			}
+		}
 		
         
         return $this->content;
