@@ -9,8 +9,14 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 
 
         // Entry for static URLs e.g. UCL Explore, Subject Librarians and WISE info skills etc.
-        $mform->addElement('advcheckbox', 'displayuclexplore',  get_string('displayuclexplore', 'block_library_resources_plus'), null);
-		$mform->setDefault('displayuclexplore', 1);
+        $static_items = array('displayuclexplore', 'displaysubjectlib');
+		foreach($static_items as $item) {
+		
+			$mform->addElement('advcheckbox', $item,  get_string($item, 'block_library_resources_plus'), null);
+			$mform->setDefault($item, 1);
+        	
+			
+		}
         
         
         // Entry for Program reading list codes
