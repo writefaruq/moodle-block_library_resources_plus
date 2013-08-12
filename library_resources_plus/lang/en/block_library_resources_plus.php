@@ -19,7 +19,7 @@
  * Strings for component 'block_library_resources_plus', language 'en'
  *
  * @package   block_library_resources_plus
- * @copyright 2013 onwards M O Faruque Sarker <ritefaruq@gmail.com>
+ * @copyright 2013 M O Faruque Sarker <writefaruq@gmail.com>
  * @license   http://www.gnu.org/copyleft/gpl.html GNU GPL v3 or later
  */
 $string['pluginname'] = 'Library Resources Plus';
@@ -33,3 +33,4 @@ $string['labelfoo'] = 'Config label';
 $string['blockstring'] = 'Block string';
 $string['modulereadinglist']=  'Module reading list';
 $string['labelprogreadlist'] = 'Enter the programme reading lists separated by comma';
+$string['displayuclexplore'] = 'Display UCL Explore';

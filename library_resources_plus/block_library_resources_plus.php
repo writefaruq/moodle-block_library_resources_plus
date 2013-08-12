@@ -26,6 +26,7 @@
 defined('MOODLE_INTERNAL') || die();
 
 // URLs for reading list
+define('LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE', 'http://ucl-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?menuitem=0&fromTop=true&fromPreferences=false&fromEshelf=false&vid=UCL_VU1');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES', 'http://readinglists.ucl.ac.uk/modules/');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES', 'http://readinglists.ucl.ac.uk/programmes/');
 
@@ -82,11 +83,18 @@ class block_library_resources_plus extends block_base {
         }
         */
         
+        //Add the static links
+        $display_ucl_explore = $this->config->displayuclexplore;
+		$link = LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE;
+		$desc = 'UCL Explore';
+		$this->content->text = '<a href="' . $link .' "> '. $desc .' </a> <br>';
+        
+        
         $prog_id = $this->config->progreadlist;
         $link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
         $link .= $prog_id;
         
-        $this->content->text = '<a href="' . $link .' "> Programme Reading Lists for '. $prog_id .' </a> <br> anothher link';
+        $this->content->text .= '<a href="' . $link .' "> Programme Reading Lists for '. $prog_id .' </a> <br> anothher link';
         
         return $this->content;
     }
