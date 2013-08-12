@@ -105,51 +105,46 @@ class block_library_resources_plus extends block_base {
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
 			switch ($i) {
 				case 1:
+					$type = $this->config->readinglistdropdown1;
 					$code = $this->config->readinglistcode1;
 					$display = $this->config->readinglistcheckbox1;
 					break;
 				case 2:
+					$type = $this->config->readinglistdropdown2;
 					$code = $this->config->readinglistcode2;
 					$display = $this->config->readinglistcheckbox2;
 					break;
 				case 3:
+					$type = $this->config->readinglistdropdown3;
 					$code = $this->config->readinglistcode3;
 					$display = $this->config->readinglistcheckbox3;
 					break;
 				case 4:
+					$type = $this->config->readinglistdropdown4;
 					$code = $this->config->readinglistcode4;
 					$display = $this->config->readinglistcheckbox4;
 					break;
 				case 5:
+					$type = $this->config->readinglistdropdown5;
 					$code = $this->config->readinglistcode5;
 					$display = $this->config->readinglistcheckbox5;
 					break;
 			}
 			if ($code && $display) {
-				$link = LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES;
+				if ($type == 'module'){
+					$link = LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES;
+				} else {
+					$link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
+				}
 				$link .= $code;  
 				$this->content->text .= '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
 			}
 				
 		}
 		
-     	//$this->content->text .= 'Reading List 1';
-		//$this->content->text .=  $this->config->readinglistdropdown;
+		// Past Exam Papers
 		
 		
-		//$display_ucl_explore = $this->config->displaysubjectlib;
-		//$link = LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS;
-		//$desc = 
-		//$this->content->text .= '<a href="' . $link .' "> '. $desc .' </a> <br>';
-        
-        
-		
-		// Add programme list
-        $prog_id = $this->config->progreadlist;
-        $link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
-        $link .= $prog_id;
-        
-        $this->content->text .= '<a href="' . $link .' "> Programme Reading Lists for '. $prog_id .' </a> <br> anothher link';
         
         return $this->content;
     }

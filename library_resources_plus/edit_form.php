@@ -22,6 +22,7 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 				'module' => 'Module',
 				'program' => 'Programme',
 		);
+
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
 			$mform->addElement('header', 'readinglist'.$i , 'Reading List '.$i);	
 			$select = $mform->addElement('select', 'config_readinglistdropdown'.$i, 'Type', $types);
@@ -30,13 +31,9 @@ class block_library_resources_plus_edit_form extends block_edit_form {
 			$mform->addElement('advcheckbox', 'config_readinglistcheckbox'.$i,  'Display', null, array('group' => 2), array(0, 1));
 			if ($i==1){
 				$mform->setDefault('config_readinglistcode'.$i, 'CODE123');	
-				$mform->setDefault('config_readinglistcheckbox'.$i, 1);	
-				
-			}
-				
+				$mform->setDefault('config_readinglistcheckbox'.$i, 1);		
+			}				
 		}
-		
-        
         // Entry for Program reading list codes
         //$mform->addElement('text', 'config_progreadlist', get_string('labelprogreadlist', 'block_library_resources_plus'));
         //$mform->setType('config_progreadlist', PARAM_TEXT);
