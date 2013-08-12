@@ -32,6 +32,8 @@ define('LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS', 'https://moodle.ucl.ac.uk/
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES', 'http://readinglists.ucl.ac.uk/modules/');
 define('LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES', 'http://readinglists.ucl.ac.uk/programmes/');
 
+define('LIST_LENGTH', 5);
+
 class block_library_resources_plus extends block_base {
 
     function init() {
@@ -99,6 +101,31 @@ class block_library_resources_plus extends block_base {
 			}
 		}
 		
+		for ($i=1; $i<= LIST_LENGTH; $i++) {
+			switch ($i) {
+				case 1:
+					$code = $this->config->readinglistcode1;
+					break;
+				case 2:
+					$code = $this->config->readinglistcode2;
+					break;
+				case 3:
+					$code = $this->config->readinglistcode3;
+					break;
+				case 4:
+					$code = $this->config->readinglistcode4;
+					break;
+				case 5:
+					$code = $this->config->readinglistcode5;
+					break;
+			}
+			if ($code) {
+				$link = LIBRARY_RESOURCES_PLUS_URL_BASE_MODULES;
+				$link .= $code;  
+				$this->content->text .= '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
+			}
+				
+		}
 		
      	//$this->content->text .= 'Reading List 1';
 		//$this->content->text .=  $this->config->readinglistdropdown;
