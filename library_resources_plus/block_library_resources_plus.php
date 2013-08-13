@@ -49,16 +49,15 @@ class block_library_resources_plus extends block_base {
         }
 
         
-        if (empty($this->instance)) {
-            $this->content = '';
-            return $this->content;
-        }
-
         $this->content = new stdClass();
         $this->content->items = array();
         $this->content->icons = array();
         $this->content->footer = '';
-        
+       
+	     if (empty($this->instance)) {
+            //$this->content = '';
+            return $this->content;
+        }
         
         // user/index.php expect course context, so get one if page has module context.
         $currentcontext = $this->page->context->get_course_context(false);
