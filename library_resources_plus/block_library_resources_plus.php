@@ -37,9 +37,11 @@ define('LIST_LENGTH', 5);
 
 class block_library_resources_plus extends block_list {
 
+
     function init() {
         $this->title = get_string('pluginname', 'block_library_resources_plus');
     }
+
 
     function get_content() {
         global $CFG, $OUTPUT, $COURSE;
@@ -48,20 +50,16 @@ class block_library_resources_plus extends block_list {
             return $this->content;
         }
 
-        
         $this->content = new stdClass();
         $this->content->items = array();
         $this->content->icons = array();
         $this->content->footer = '';
-       
-	   
+			   
 	    if (empty($this->instance)) {
-       
            return $this->content;
-       }
+		}
         
-
-        $courseid = urlencode(strtolower(substr($COURSE->idnumber, 0, 8)));
+		$courseid = urlencode(strtolower(substr($COURSE->idnumber, 0, 8)));
         
 		// Add Reading lists
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
@@ -101,11 +99,10 @@ class block_library_resources_plus extends block_list {
 				$link .= $code;
 				$this->content->icons[] = '<img src="' . $OUTPUT->pix_url( '/f/web').'" height="16" width="16" alt="" />&nbsp;';
 				$this->content->items[] = '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
-			}
-				
+			}	
 		}
-		
-		// Past Exam Papers
+
+		// Add past Exam Papers
 		for ($i=1; $i<= LIST_LENGTH; $i++) {
 			switch ($i) {
 				case 1:					
@@ -167,9 +164,11 @@ class block_library_resources_plus extends block_list {
                      'mod-quiz' => false);
     }
 
+
     public function instance_allow_multiple() {
     	return true;
     }
+
 
     function has_config() {
     	return true;
