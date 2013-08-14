@@ -25,7 +25,7 @@
 
 defined('MOODLE_INTERNAL') || die();
 
-// URLs for reading list
+// URLs for reading list -- Can be moved to admin config
 define('LIBRARY_RESOURCES_PLUS_URL_UCL_EXPLORE', 'http://ucl-primo.hosted.exlibrisgroup.com/primo_library/libweb/action/search.do?menuitem=0&fromTop=true&fromPreferences=false&fromEshelf=false&vid=UCL_VU1');
 define('LIBRARY_RESOURCES_PLUS_URL_SUBJECT_LIBRARIANS', 'http://www.ucl.ac.uk/Library/whoaz.shtml');
 define('LIBRARY_RESOURCES_PLUS_URL_WISE_INFO_SKILLS', 'https://moodle.ucl.ac.uk/course/category.php?id=70');
@@ -35,7 +35,7 @@ define('LIBRARY_RESOURCES_PLUS_URL_BASE_EXAM_PAPER', 'http://digitool-b.lib.ucl.
 
 define('LIST_LENGTH', 5);
 
-class block_library_resources_plus extends block_base {
+class block_library_resources_plus extends block_list {
 
     function init() {
         $this->title = get_string('pluginname', 'block_library_resources_plus');
@@ -44,7 +44,7 @@ class block_library_resources_plus extends block_base {
     function get_content() {
         global $CFG, $OUTPUT, $COURSE;
 
-        if ($this->content !== null) {
+        if ($this->content !== NULL) {
             return $this->content;
         }
 
@@ -54,13 +54,13 @@ class block_library_resources_plus extends block_base {
         $this->content->icons = array();
         $this->content->footer = '';
        
-	     if (empty($this->instance)) {
-            //$this->content = '';
-            return $this->content;
-        }
+	   
+	    if (empty($this->instance)) {
+       
+           return $this->content;
+       }
         
-        // user/index.php expect course context, so get one if page has module context.
-        $currentcontext = $this->page->context->get_course_context(false);
+
         $courseid = urlencode(strtolower(substr($COURSE->idnumber, 0, 8)));
         
 		// Add Reading lists
@@ -98,8 +98,9 @@ class block_library_resources_plus extends block_base {
 				} else {
 					$link = LIBRARY_RESOURCES_PLUS_URL_BASE_PROGRAMMES;
 				}
-				$link .= $code;  
-				$this->content->text .= '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
+				$link .= $code;
+				$this->content->icons[] = '<img src="' . $OUTPUT->pix_url( '/f/web').'" height="16" width="16" alt="" />&nbsp;';
+				$this->content->items[] = '<a href="' . $link .' "> Reading List for '. $code .' </a> <br>';	
 			}
 				
 		}
@@ -130,8 +131,9 @@ class block_library_resources_plus extends block_base {
 			}
 			if ($code && $display) {
 				$link = LIBRARY_RESOURCES_PLUS_URL_BASE_EXAM_PAPER;
-				$link .= $code;  
-				$this->content->text .= '<a href="' . $link .' "> Past UCL Exam Papers for '. $code .' </a> <br>';	
+				$link .= $code;
+				$this->content->icons[] = '<img src="' . $OUTPUT->pix_url( '/f/web').'" height="16" width="16" alt="" />&nbsp;';
+				$this->content->items[] = '<a href="' . $link .' "> Past UCL Exam Papers for '. $code .' </a> <br>';	
 			}
 				
 		}
@@ -146,15 +148,15 @@ class block_library_resources_plus extends block_base {
 		foreach ( $static_items as $item) {
 			//echo 'Item: '. $item[1] . 'enabled = ' . $item[0];
 			if ($item[0] == 1) {
-				$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';	
+				//$this->content->text .= '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';
+				$this->content->icons[] = '<img src="' . $OUTPUT->pix_url( '/f/web').'" height="16" width="16" alt="" />&nbsp;';
+				$this->content->items[] =  '<a href="' . $item[2] .' "> '. $item[1]  .' </a> <br>';		
 			}
 		}
-		
-        
         return $this->content;
     }
 
-    // my moodle can only have SITEID and it's redundant here, so take it away
+
     public function applicable_formats() {
         return array('all' => false,
                      'site' => true,
@@ -166,18 +168,16 @@ class block_library_resources_plus extends block_base {
     }
 
     public function instance_allow_multiple() {
-          return true;
+    	return true;
     }
 
-    function has_config() {return true;}
+    function has_config() {
+    	return true;
+	}
 
-    /*
+   
     public function cron() {
-            mtrace( "Hey, my cron script is running" );
-             
-                 // do something
-                  
-                      return true;
+    	return false;
     }
-    */
+   
 }
